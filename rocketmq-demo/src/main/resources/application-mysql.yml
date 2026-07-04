@@ -1,0 +1,36 @@
+
+server:
+  port: 8080
+
+spring:
+  application:
+    name: rocketmq-demo
+  
+  datasource:
+    url: jdbc:mysql://localhost:3306/rocketmq_demo?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai
+    username: root
+    password: password
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.MySQLDialect
+
+rocketmq:
+  name-server: localhost:9876
+  producer:
+    group: demo-producer-group
+    send-message-timeout: 30000
+    retry-times-when-send-failed: 2
+    retry-times-when-send-async-failed: 2
+    max-message-size: 4194304
+
+logging:
+  level:
+    com.example.rocketmq: DEBUG
+    org.apache.rocketmq: INFO

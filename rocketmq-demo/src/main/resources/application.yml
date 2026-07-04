@@ -1,0 +1,41 @@
+
+server:
+  port: 8080
+
+spring:
+  application:
+    name: rocketmq-demo
+  
+  datasource:
+    url: jdbc:h2:mem:rocketmq_demo;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    username: sa
+    password: 
+    driver-class-name: org.h2.Driver
+  
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+  
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.H2Dialect
+
+rocketmq:
+  name-server: localhost:9876
+  producer:
+    group: demo-producer-group
+    send-message-timeout: 30000
+    retry-times-when-send-failed: 2
+    retry-times-when-send-async-failed: 2
+    max-message-size: 4194304
+
+logging:
+  level:
+    com.example.rocketmq: DEBUG
+    org.apache.rocketmq: INFO
